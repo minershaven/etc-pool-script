@@ -149,7 +149,11 @@ systemctl restart redis-server.servic e
 echo -e "\033[32mEnabling on reboot"
 systemctl enable redis-server.service
 
+# **********************************************************
+#                          Screen                          #
+# **********************************************************
 
+sudo apt install screen
 
 # **********************************************************
 #                           Wacthman                       #
