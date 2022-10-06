@@ -4,7 +4,7 @@
 #                           GOLANG                         #
 # **********************************************************
 
-VERSION="1.13.x"
+VERSION="1.19.x"
 
 print_help() {
     echo "Usage: bash goinstall.sh OPTIONS"
@@ -143,7 +143,7 @@ echo -e "\033[32mInstalling redis-server"
 apt-get install redis-server
 
 # Closing and starting the server if already started
-systemctl restart redis-server.servic e
+systemctl restart redis-server.service
 
 # Enabling the service on reboot
 echo -e "\033[32mEnabling on reboot"
@@ -195,7 +195,7 @@ echo -e '\033[1;92mMaking a geth service'
 echo "[Unit]
 Description=Ethereum Go Client
 [Service]
-ExecStart=/usr/local/bin/geth --fast --cache=2048 --datadir=/mnt/etc-blockchain --keystore=/mnt/eth-blockchain --rpc --rpcport=8882 --rpccorsdomain=* --rpcapi=web3,db,net,eth
+ExecStart=geth --classic --cache=2048 --datadir=/home/pool/.ethereum/classic --keystore=/home/pool/.ethereum/classic/keystore --http --http.port 8545 --http.api eth,net,web3 --http.corsdomain '*' --mine
 Restart=always
 RestartSec=30
 Type=simple
@@ -210,7 +210,7 @@ systemctl enable geth.service
 
 
 echo -e '\033[1;92mStarting geth'
-screen geth --rpc --fast #syncing
+screen geth geth --classic --cache=2048 --datadir=/home/pool/.ethereum/classic --keystore=/home/pool/.ethereum/classic/keystore --http --http.port 8545 --http.api eth,net,web3 --http.corsdomain '*' --mine
 
 
 
